@@ -1,3 +1,5 @@
+/*NOTE: this tutorial helped me figure out what kind of functions I needed: https://scotch.io/tutorials/how-to-build-a-memory-matching-game-in-javascript */
+
 // List that holds all of the cards
 const cards = [...document.getElementsByClassName("card")];
 const deck = document.querySelector(".deck");
