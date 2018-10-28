@@ -93,6 +93,7 @@ function matched() {
 			card.style.pointerEvents = "auto";
 		}
 	}
+	winGame();
 }
 
 function unmatched() {
@@ -144,5 +145,37 @@ function incrementCounter () {
 	}	
 }
 
-/*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+
+//if all cards have matched, display a message with the final score
+function winGame() {
+	let cnt = 0;
+	for (card of cards) {
+		//count the matched cards
+		if (card.classList.contains("matched")) {
+			cnt++;
+		}
+		//if all cards have matched, display a message with the final score
+		if (cnt===16) {
+
+			//display the end screen showing the score
+			const endScreen = document.querySelector(".end-screen");
+			endScreen.style.visibility = "visible";
+			endScreen.style.display = "initial";
+			const score = document.querySelector(".end-score");
+
+			if (stars.length === 1) {
+				score.innerHTML = "With " + moves + " Moves and " + stars.length +" Star";
+			}
+			else {
+				score.innerHTML = "With " + moves + " Moves and " + stars.length +" Stars";
+			}
+
+
+			//when the user clicks on (x), close the modal
+			const closeButton = document.querySelector(".close");
+			closeButton.onclick = function() {
+				endScreen.style.display = "none";
+			}
+		}
+	}
+}
