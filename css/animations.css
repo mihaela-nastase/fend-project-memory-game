@@ -1,0 +1,47 @@
+.deck {
+	perspective: 1000px;
+}
+
+.deck .card {
+	transform-style: preserve-3d;
+	transition: transform 0.7s;
+}
+
+.deck .card .closed {
+	width: 100%; 
+	height: 100%;
+	position: absolute;
+	border-radius: 8px;
+	transform: rotateY(0deg);
+	transition: transform 0.7s;
+	backface-visibility: hidden;
+	background: #000;
+	/*pattern from here: https://mark-rolich.github.io/MemoryGame.js/ */
+	background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 5px, rgb(34, 188, 189) 6px, rgb(34, 188, 189) 6px, rgba(255,255,255,.1) 7px),repeating-linear-gradient(135deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 5px, rgb(34, 188, 189) 6px, rgb(34, 188, 189) 6px, rgba(255,255,255,.1) 7px);
+	background-image: -webkit-repeating-linear-gradient(45deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 5px, rgb(34, 188, 189) 6px, rgb(34, 188, 189) 6px, rgba(255,255,255,.1) 7px),repeating-linear-gradient(135deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 5px, rgb(34, 188, 189) 6px, rgb(34, 188, 189) 6px, rgba(255,255,255,.1) 7px);
+}
+
+.deck .card .open {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	border-radius: 8px;
+	backface-visibility: hidden;
+	transform: rotateY(-180deg);
+	font-size: 33px;
+	cursor: default;
+	background: #02b3e4;
+	background: inherit;
+}
+
+.deck .card .open .fa {
+	align-self: center;
+	z-index: 2;
+	color: #fff;
+}
+
+.deck .card.flipped {
+	transform: rotateY(-180deg);
+}
