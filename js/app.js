@@ -9,6 +9,9 @@ let openedCards = [];
 const counter = document.querySelector(".moves");
 let moves = 0;
 
+const star = document.querySelectorAll(".fa-star");
+const stars = [...star];
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -125,6 +128,20 @@ function unmatched() {
 function incrementCounter () {
 	moves++;
 	counter.textContent = moves;
+	
+	if (moves > 27) {
+		star[1].style.visibility="hidden";
+		if (stars.length > 1) {
+			//the last star stays in place while the others are removed
+			stars.pop();
+		}
+	}
+	else if (moves > 19 && moves < 27) {
+		star[2].style.visibility="hidden";
+		if (stars.length > 2) {
+			stars.pop();
+		}
+	}	
 }
 
 /*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
