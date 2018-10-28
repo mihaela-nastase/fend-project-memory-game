@@ -5,6 +5,10 @@ const deck = document.querySelector(".deck");
 //list holding the "open" cards
 let openedCards = [];
 
+//count the moves starting from 0
+const counter = document.querySelector(".moves");
+let moves = 0;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -51,6 +55,8 @@ function add2OpenedCards() {
 
 	//if the list has two cards, check to see if the two cards match
 	if (openedCards.length === 2) {	
+		//count the moves
+		incrementCounter();
 
 		//loop through the cards to disable the event listener to prevent the clicking of more than 2 cards
 		for (card of cards) {
@@ -115,7 +121,11 @@ function unmatched() {
 	}, 1500);
 }		
 
+//increment the move counter and display it on the page
+function incrementCounter () {
+	moves++;
+	counter.textContent = moves;
+}
 
-/*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+/*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
