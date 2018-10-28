@@ -48,11 +48,74 @@ function add2OpenedCards() {
 
 	//if the card is clicked, add the card to a list of "open" cards
 	openedCards.push(this);
+
+	//if the list has two cards, check to see if the two cards match
+	if (openedCards.length === 2) {	
+
+		//loop through the cards to disable the event listener to prevent the clicking of more than 2 cards
+		for (card of cards) {
+			card.style.pointerEvents = "none";
+		}
+		//compare the symbols
+		const firstCard = openedCards[0].querySelector(".fa");
+		const secondCard = openedCards[1].querySelector(".fa");	
+		if (firstCard.getAttribute("class") === secondCard.getAttribute("class")) {
+			//the cards match
+			matched();
+		}
+		else {
+			//the cards do not match
+			unmatched();
+		}
+	}
 }
 
-/*  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+function matched() {
+	//if the cards do match, lock the cards in the open position
+	this.removeEventListener("click", displayCard);
+	this.removeEventListener("click", add2OpenedCards);
+	openedCards[0].classList.add("matched");
+	openedCards[1].classList.add("matched");
+	//clear the list of "open" cards
+	openedCards = [];
+	//re-enable the clicking of cards
+	for (card of cards) {
+		if (card.classList.contains("matched")===false){
+			card.style.pointerEvents = "auto";
+		}
+	}
+}
+
+function unmatched() {
+	//if the cards do not match, remove the cards from the list and hide the card's symbol
+
+	setTimeout (function() {
+		//temporarily change the cards' style
+		openedCards[0].classList.add("unmatched");
+		openedCards[1].classList.add("unmatched");
+	}, 550);
+
+	setTimeout (function() {
+		//return to the base style
+		openedCards[0].classList.remove("unmatched");
+		openedCards[1].classList.remove("unmatched");
+
+		//close the open cards
+		openedCards[0].classList.toggle("flipped");
+		openedCards[1].classList.toggle("flipped");
+
+		//clear the "open" cards list
+		openedCards = [];
+		//re-enable the clicking of cards
+		for (card of cards) {
+			if (card.classList.contains("matched")===false){
+				card.style.pointerEvents = "auto";
+			}
+		}
+	}, 1500);
+}		
+
+
+/*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */

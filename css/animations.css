@@ -45,3 +45,132 @@
 .deck .card.flipped {
 	transform: rotateY(-180deg);
 }
+
+.deck .card.unmatched {
+	background: red !important;
+	-moz-transition:color .2s ease-in;
+	-o-transition:color .2s ease-in;
+	-webkit-transition:color .2s ease-in;
+	animation-name: pulse;
+	animation-duration: .75s;
+}
+
+.deck .card.matched {
+	background: #02ccba;
+	font-size: 33px;
+	cursor: default;
+	animation-name: rubberBand;
+	animation-duration: .75s;
+}
+
+
+/* Source of the pulse and rubberBand animations: http://www.theappguruz.com/tag-tools/web/CSSAnimations/ */
+/*I had to rotate them -180degrees*/
+
+
+.pulse {
+	-webkit-animation-name: pulse;
+	animation-name: pulse;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-transform: scale3d(1, 1, 1) rotateY(-180deg);
+		transform: scale3d(1, 1, 1) rotateY(-180deg);
+	}
+	50% {
+		-webkit-transform: scale3d(1.05, 1.05, 1.05) rotateY(-180deg);
+		transform: scale3d(1.05, 1.05, 1.05) rotateY(-180deg);
+	}
+	100% {
+		-webkit-transform: scale3d(1, 1, 1) rotateY(-180deg);
+		transform: scale3d(1, 1, 1) rotateY(-180deg);
+	}
+}
+@keyframes pulse {
+	0% {
+		-webkit-transform: scale3d(1, 1, 1) rotateY(-180deg);
+		transform: scale3d(1, 1, 1) rotateY(-180deg);
+	}
+	50% {
+		-webkit-transform: scale3d(1.05, 1.05, 1.05) rotateY(-180deg);
+		transform: scale3d(1.05, 1.05, 1.05) rotateY(-180deg);
+	}
+	100% {
+		-webkit-transform: scale3d(1, 1, 1) rotateY(-180deg);
+		transform: scale3d(1, 1, 1) rotateY(-180deg);
+	}
+} 
+
+
+.rubberBand {
+	-webkit-animation-name: rubberBand;
+	animation-name: rubberBand;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+@-webkit-keyframes rubberBand {
+	0% {
+		-webkit-transform: scale3d(1, 1, 1) rotateY(-180deg);
+		transform: scale3d(1, 1, 1) rotateY(-180deg);
+	}
+	30% {
+		-webkit-transform: scale3d(1.25, 0.75, 1) rotateY(-180deg);
+		transform: scale3d(1.25, 0.75, 1) rotateY(-180deg);
+	}
+	40% {
+		-webkit-transform: scale3d(0.75, 1.25, 1) rotateY(-180deg);
+		transform: scale3d(0.75, 1.25, 1) rotateY(-180deg);
+	}
+	50% {
+		-webkit-transform: scale3d(1.15, 0.85, 1) rotateY(-180deg);
+		transform: scale3d(1.15, 0.85, 1) rotateY(-180deg);
+	}
+	65% {
+		-webkit-transform: scale3d(.95, 1.05, 1) rotateY(-180deg);
+		transform: scale3d(.95, 1.05, 1) rotateY(-180deg);
+	}
+	75% {
+		-webkit-transform: scale3d(1.05, .95, 1) rotateY(-180deg);
+		transform: scale3d(1.05, .95, 1) rotateY(-180deg);
+	}
+	100% {
+		-webkit-transform: scale3d(1, 1, 1) rotateY(-180deg);
+		transform: scale3d(1, 1, 1) rotateY(-180deg);
+	}
+}
+@keyframes rubberBand {
+	0% {
+		-webkit-transform: scale3d(1, 1, 1) rotateY(-180deg);
+		transform: scale3d(1, 1, 1) rotateY(-180deg);
+	}
+	30% {
+		-webkit-transform: scale3d(1.25, 0.75, 1) rotateY(-180deg);
+		transform: scale3d(1.25, 0.75, 1) rotateY(-180deg);
+	}
+	40% {
+		-webkit-transform: scale3d(0.75, 1.25, 1) rotateY(-180deg);
+		transform: scale3d(0.75, 1.25, 1) rotateY(-180deg);
+	}
+	50% {
+		-webkit-transform: scale3d(1.15, 0.85, 1) rotateY(-180deg);
+		transform: scale3d(1.15, 0.85, 1) rotateY(-180deg);
+	}
+	65% {
+		-webkit-transform: scale3d(.95, 1.05, 1) rotateY(-180deg);
+		transform: scale3d(.95, 1.05, 1) rotateY(-180deg);
+	}
+	75% {
+		-webkit-transform: scale3d(1.05, .95, 1) rotateY(-180deg);
+		transform: scale3d(1.05, .95, 1) rotateY(-180deg);
+	}
+	100% {
+		-webkit-transform: scale3d(1, 1, 1) rotateY(-180deg);
+		transform: scale3d(1, 1, 1) rotateY(-180deg);
+	}
+}
