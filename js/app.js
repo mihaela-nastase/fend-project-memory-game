@@ -23,18 +23,20 @@ let sec = 0;
 //define the variable so clearInterval can be called outside of the function
 let myInterval;
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+
 function startGame() {
+	shuffle(cards);
 	for (card of cards) {
+		//clear the deck
+		deck.innerHTML = "";
+		//loop through each card and create its HTML. About this method: https://stackoverflow.com/questions/16053357/what-does-foreach-call-do-in-javascript
+		[].forEach.call(cards, function(item) {
+			//add each card's HTML to the page
+			deck.appendChild(item);
+		});
 		//start the timer upon the first move
 		card.addEventListener("click", startTimer);
-	}
-		
+	}	
 }
 startGame();
 
@@ -240,6 +242,9 @@ function restartGame() {
 		
 		//clear the "open" cards list
 		openedCards = [];
+
+		//restart game
+		startGame();
 
 	}, 100);
 }
