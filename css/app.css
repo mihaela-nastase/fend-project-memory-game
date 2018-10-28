@@ -39,7 +39,9 @@ h1 {
 
 .deck {
     width: 660px;
-    min-height: 680px;
+    max-height: 680px;
+	/*I used an Aspect Ratio Calculator: https://andrew.hedges.name/experiments/aspect_ratio/ */
+	min-height: 311px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
@@ -52,8 +54,8 @@ h1 {
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+    max-height: 125px;
+    max-width: 125px;
     border-radius: 8px;
     cursor: pointer;
     display: flex;

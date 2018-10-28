@@ -1,0 +1,66 @@
+
+
+/*prevent horizontal scrolling*/
+html {
+	overflow-x: hidden;
+}
+
+
+/* Viewports */
+
+
+@media screen and (max-width: 362px) {
+	
+	.score-panel {
+		width: 94%
+	}
+}
+
+
+@media screen and (max-width: 659px) {
+	
+	.container,
+	header,
+	.deck,
+	.end-screen {
+		width: 100%;
+	}
+	
+	header {
+		text-align: center;
+	}
+	
+	.deck {
+		box-shadow: none;
+	}
+}
+
+
+@media screen and (min-width: 241px) and (max-width: 659px) {
+
+	.deck {
+		/*Formula from here: https://css-tricks.com/fun-viewport-units/ */
+		height: calc(100vw * (33/34));
+	}
+
+	.deck .card {
+		height: calc(125*100/660 * 1vw);
+		width: calc(125*100/660 * 1vw);
+	}
+
+	.end-screen {
+		padding-top: calc(250*100/680 * 1vw);
+	}
+}
+
+@media screen and (min-width: 660px) {
+	
+	.deck .card {
+		height: 125px;
+		width: 125px;
+	}
+
+	.deck {
+		height: 680px;
+	}
+}
