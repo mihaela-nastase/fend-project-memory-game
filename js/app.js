@@ -16,12 +16,27 @@ const stars = [...star];
 const restartButton = document.querySelector(".restart");
 restartButton.addEventListener("click", restartGame);
 
+const timer = document.querySelector(".timer");
+timer.innerText = "00:00";
+let sec = 0;
+
+//define the variable so clearInterval can be called outside of the function
+let myInterval;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+function startGame() {
+	for (card of cards) {
+		//start the timer upon the first move
+		card.addEventListener("click", startTimer);
+	}
+		
+}
+startGame();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -160,6 +175,8 @@ function winGame() {
 		}
 		//if all cards have matched, display a message with the final score
 		if (cnt===16) {
+			//stop the timer
+			clearInterval(myInterval);
 
 			//display the end screen showing the score
 			const endScreen = document.querySelector(".end-screen");
@@ -168,10 +185,10 @@ function winGame() {
 			const score = document.querySelector(".end-score");
 
 			if (stars.length === 1) {
-				score.innerHTML = "With " + moves + " Moves and " + stars.length +" Star";
+				score.innerHTML = "With " + moves + " Moves and " + stars.length +" Star in " +  timer.innerText + " minutes.";
 			}
 			else {
-				score.innerHTML = "With " + moves + " Moves and " + stars.length +" Stars";
+				score.innerHTML = "With " + moves + " Moves and " + stars.length +" Stars in " +  timer.innerText + " minutes.";
 			}
 
 			//pressing play again restarts the game
@@ -204,6 +221,11 @@ function restartGame() {
 		star[1].style.visibility="visible";
 		stars.length = 3;
 
+		//reset the timer
+		sec = 0;
+		timer.innerText = "00:00";
+		clearInterval(myInterval);
+
 		for (card of cards) {
 			//close the open cards
 			if (card.classList.contains("flipped")) {
@@ -220,4 +242,22 @@ function restartGame() {
 		openedCards = [];
 
 	}, 100);
+}
+
+function startTimer() {
+
+	//prevent more instances of the timer from running
+	for (card of cards) {
+		card.removeEventListener("click", startTimer);
+	}
+
+	myInterval = setInterval(function(){
+		//increment the number every second
+		sec++;
+		//calculate the seconds and minutes and convert them to strings
+		const minutes = Math.floor(sec/60).toString();
+		const seconds = Math.floor(sec%60).toString();
+		//display the timer in double digits
+		timer.innerText = minutes.padStart(2, "0") + ":" + seconds.padStart(2, "0");
+	}, 1000);
 }
