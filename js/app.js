@@ -12,6 +12,10 @@ let moves = 0;
 const star = document.querySelectorAll(".fa-star");
 const stars = [...star];
 
+//the restart button resets the cards, moves, stars
+const restartButton = document.querySelector(".restart");
+restartButton.addEventListener("click", restartGame);
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -170,6 +174,12 @@ function winGame() {
 				score.innerHTML = "With " + moves + " Moves and " + stars.length +" Stars";
 			}
 
+			//pressing play again restarts the game
+			const playButton = document.querySelector(".play-again");
+			playButton.onclick = function() {
+				endScreen.style.display = "none";
+				restartGame()
+			}
 
 			//when the user clicks on (x), close the modal
 			const closeButton = document.querySelector(".close");
@@ -178,4 +188,36 @@ function winGame() {
 			}
 		}
 	}
+}
+
+
+function restartGame() {
+	//the restart button would bug without a timeout when pressed repeatedly
+	setTimeout (function() {
+
+		//reset the moves counter
+		counter.textContent=0;
+		moves = 0;
+
+		//reset the stars
+		star[2].style.visibility="visible";
+		star[1].style.visibility="visible";
+		stars.length = 3;
+
+		for (card of cards) {
+			//close the open cards
+			if (card.classList.contains("flipped")) {
+				card.classList.toggle("flipped");
+			}
+			//reset matched and unmatched cards
+			card.classList.remove("matched");
+			card.classList.remove("unmatched");
+			//enable clicking
+			card.style.pointerEvents = "auto";
+		}
+		
+		//clear the "open" cards list
+		openedCards = [];
+
+	}, 100);
 }
